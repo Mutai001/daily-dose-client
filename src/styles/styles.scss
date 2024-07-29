@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+body {
+    @apply bg-white text-gray-900;
+}
+
+.header,
+.footer {
+    @apply bg-brand-darkblue text-white;
+}
+
+.button {
+    @apply bg-brand-blue text-white;
+}
