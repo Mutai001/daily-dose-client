@@ -1,4 +1,3 @@
-// src/components/PostList.tsx
 import React from 'react';
 import { useGetPostsQuery } from '../api/apiSlice';
 import PostCard from './PostCard';
@@ -10,15 +9,14 @@ interface Post {
 }
 
 const PostList: React.FC = () => {
-  // Correctly provide any required arguments to useGetPostsQuery if needed
-  const { data: posts, error, isLoading } = useGetPostsQuery({});
+  // No arguments are needed for the getPosts query
+  const { data: posts, error, isLoading } = useGetPostsQuery();
 
   if (isLoading) return <p>Loading...</p>;
 
-  // Handle different error types
   if (error) {
-    // Check if error has a response object and a data property
-    const errorMessage = (error as { status: number; data: any })?.data?.message || 'An error occurred';
+    // Properly handle the error based on the possible error structure
+    const errorMessage = (error as any)?.data?.message || 'An error occurred';
     return <p>Error: {errorMessage}</p>;
   }
 

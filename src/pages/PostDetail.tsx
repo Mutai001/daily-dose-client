@@ -5,7 +5,7 @@ import { useGetPostByIdQuery } from '../api/apiSlice';
 
 const PostDetail: React.FC = () => {
   const { id } = useParams<{ id: string }>();
-  const { data: post, error, isLoading } = useGetPostByIdQuery(id || '');
+  const { data: post, error, isLoading } = useGetPostByIdQuery(Number(id) || 0);
 
   if (isLoading) return <p>Loading...</p>;
 
