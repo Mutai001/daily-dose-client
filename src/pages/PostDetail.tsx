@@ -8,7 +8,15 @@ const PostDetail: React.FC = () => {
   const { data: post, error, isLoading } = useGetPostByIdQuery(id || '');
 
   if (isLoading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error.message}</p>;
+
+  // Handle different error types
+  if (error) {
+    // Use a type guard to determine the structure of the error
+    const errorMessage = 'data' in error
+      ? 'An error occurred'
+      : (error as { data?: { message?: string } }).data?.message || 'An error occurred';
+    return <p>Error: {errorMessage}</p>;
+  }
 
   return (
     <div className="p-4">
